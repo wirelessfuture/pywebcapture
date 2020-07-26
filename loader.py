@@ -2,11 +2,10 @@ import os
 import csv
 from urllib.parse import urlparse
 
-# Description here
-class FileLoader:
+# CSVLoader takes a valid .csv file and builds a filename/uri map for the driver
+class CSVLoader:
     def __init__(self, input_filepath, has_header, uri_column, filename_column):
         # User must pass a valid csv file as the input_filepath argument as type str
-        # TODO: If filetype checking enabled, only enabled image mimetypes
         if input_filepath != "" and input_filepath != None and isinstance(input_filepath, str):
             if os.path.isfile(input_filepath):
                 self.input_filepath = input_filepath
