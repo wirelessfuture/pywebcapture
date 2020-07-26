@@ -7,15 +7,15 @@ class FileLoader:
     def __init__(self, input_filepath, has_header, uri_column, filename_column):
         # User must pass a valid csv file as the input_filepath argument as type str
         # TODO: If filetype checking enabled, only enabled image mimetypes
-        if input_filepath != "" or input_filepath != None and input_filepath is type(str):
+        if input_filepath != "" and input_filepath != None and isinstance(input_filepath, str):
             if os.path.isfile(input_filepath):
                 self.input_filepath = input_filepath
             else:
-                raise FileNotFoundError("input_filepath %d is not a file!" % input_filepath)
+                raise FileNotFoundError("input_filepath %s is not a file!" % input_filepath)
         else: 
             raise TypeError("input_filepath must be of type (str) and cannot be empty or None")
 
-         # Check if file has a header or not and represent with bool
+        # Check if file has a header or not and represent with bool
         # TODO: Use csv.Sniffer().has_header as a fallback method if chosen
         if has_header is True or has_header is False:
             self.has_header = has_header
