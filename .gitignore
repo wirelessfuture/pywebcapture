@@ -1,0 +1,14 @@
+# Ignore VS code files
+.vscode
+
+# Ignore test screenshot folder
+screenshots/
+
+# Ignore python virtual env
+venv/
+
+# Ignore CSV files
+*csv
+
+# Ignore chromedriver executable
+chromedriver
