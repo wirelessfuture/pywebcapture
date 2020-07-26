@@ -79,7 +79,7 @@ class FileLoader:
             # Replace dict with temp dict
             self.uri_dict = uri_dict_temp            
 
-
+    # Get the uri dict
     def get_uri_dict(self):
         self._set_uri_dict()
         return self.uri_dict
