@@ -36,6 +36,7 @@ class PageDriver:
         return height
 
     # Given a height, url and an article_id, it will open the url at the chosen height and take a screenshot
+    # TODO: Add filetype checking with mimetypes
     def screenshot_page(self, height, url, article_id):
         try: 
             print(f">>> TAKING SCREENSHOT OF {url}")
