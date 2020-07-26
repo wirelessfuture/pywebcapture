@@ -1,10 +1,14 @@
+import time
+
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+
+from helper import return_driver_path
 
 class PageDriver:
     # Initialise the drivers
     def __init__(self, output_path):
-        self.DRIVER = 'chromedriver'
+        self.DRIVER = return_driver_path()
         height_driver_options = Options()
         height_driver_options.add_argument("--headless")
         self.height_driver = webdriver.Chrome(self.DRIVER, options=height_driver_options)
