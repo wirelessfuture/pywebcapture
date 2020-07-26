@@ -11,6 +11,8 @@ class CSVLoader:
                 self.input_filepath = input_filepath
             else:
                 raise FileNotFoundError("input_filepath %s is not a file!" % input_filepath)
+        elif input_filepath.lower().endswith(".csv") != True:
+            raise Exception("input_filepath must be a valid *.csv file")
         else: 
             raise TypeError("input_filepath must be of type (str) and cannot be empty or None")
 
