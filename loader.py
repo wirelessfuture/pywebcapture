@@ -71,7 +71,6 @@ class FileLoader:
                 if self.has_header == True:
                     next(reader)
                     for line in reader:
-                        print(line[self.uri_column])
                         uri_dict_temp[line[self.filename_column]] = line[self.uri_column]
                 else:
                     for line in reader:

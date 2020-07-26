@@ -1,4 +1,3 @@
-import time
 import os.path
 
 from selenium import webdriver
@@ -6,6 +5,9 @@ from selenium.webdriver.chrome.options import Options
 
 from helper import return_driver_path
 
+# Description goes here
+# TODO: Allow users to automatically upload to cloud storage like AWS S3
+# TODO: Add filetype checking with mimetypes
 class PageDriver:
     # Initialise the drivers
     def __init__(self, output_path):
@@ -15,13 +17,22 @@ class PageDriver:
         self.height_driver = webdriver.Chrome(self.DRIVER, options=height_driver_options)
         self.screen_driver = None
 
-        if output_path != "" or output_path != None:
-            self.output_path = output_path
+        # Check if output path is a valid directory, if not then use default screenshots folder
+        if output_path != "" and output_path != None and isinstance(output_path, str):
+            if os.path.exists(output_path):
+                self.output_path = output_path
+            else:
+                raise NotADirectoryError("output_path: %s is not a valid directory" % output_path)
         else:
-            self.output_path = None
+            self.output_path = "./screenshots"
 
-    # Given a height, sets a new selenium driver with new options
+    # Given a height, shutsdown the current driver if it exists and sets a new selenium driver with new options
+    # It was noted that shutting down the old driver instance would save memory
+    # TODO: Kill all chrome webdriver proccesses gracefully on shutdown
     def set_screen_driver(self, height):
+        if self.screen_driver != None:
+            self.screen_driver.quit()
+            self.screen_driver = None
         screen_driver_options = Options()
         screen_driver_options.add_argument("--headless")
         screen_driver_options.add_argument(f"--window-size=1920,{height}")
@@ -36,20 +47,17 @@ class PageDriver:
         return height
 
     # Given a height, url and an article_id, it will open the url at the chosen height and take a screenshot
-    # TODO: Add filetype checking with mimetypes
-    def screenshot_page(self, height, url, article_id):
+    def screenshot_page(self, height, uri, file_name):
         try: 
-            print(f">>> TAKING SCREENSHOT OF {url}")
+            print(">>> TAKING SCREENSHOT OF %s" % uri)
             self.set_screen_driver(height)
-            self.screen_driver.get(url)
+            self.screen_driver.get(uri)
 
-            if self.output_path != None:
-                current_output_path = os.path.join(self.output_path, f'{article_id}.png')
-                self.screen_driver.save_screenshot(current_output_path)
-            else: 
-                self.screen_driver.save_screenshot(f'{article_id}.png')
+            current_output_path = os.path.join(self.output_path, "%s.png" % file_name)
+            self.screen_driver.save_screenshot(current_output_path)
 
             print(">>> SUCCESS")
-        except Exception:
+        except Exception as err:
             print(">>> SOMETHING WENT WRONG, SKIPPING...")
-            return
+            print(err)
+            return (file_name, uri, height)
