@@ -12,3 +12,6 @@ venv/
 
 # Ignore chromedriver executable
 chromedriver
+
+# Ignore __pycache__ folder
+__pycache__/
