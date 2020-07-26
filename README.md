@@ -1,4 +1,4 @@
-# Screenshot Grabber
+# Pyscreen
 Allows you to crawl websites and grab a screenshot that can be saved to disk
 
 ## Installation
