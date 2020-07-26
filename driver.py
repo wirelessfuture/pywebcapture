@@ -29,6 +29,7 @@ class PageDriver:
     # Given a height, shutsdown the current driver if it exists and sets a new selenium driver with new options
     # It was noted that shutting down the old driver instance would save memory
     # TODO: Kill all chrome webdriver proccesses gracefully on shutdown
+    # TODO: Allow users to specify custom sizes, this way we can bypass the get_height method
     def set_screen_driver(self, height):
         if self.screen_driver != None:
             self.screen_driver.quit()
