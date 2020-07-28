@@ -62,20 +62,31 @@ class CSVLoader:
         with open(self.input_filepath, 'r', encoding='utf-8') as in_file:
             uri_dict_temp = {}
             reader = csv.reader(in_file)
+
             # If the filename is not specified, use netloc as filename + index of iteration
             if self.filename_column == None:
-                for i, line in enumerate(reader):
-                    parsed_uri = urlparse(line[self.uri_column]).netloc.replace(".", "_").replace(':', "_")
-                    uri_dict_temp[parsed_uri + "_%i" %i] = line[self.uri_column]
+                # Exclude header if has_header is True
+                if self.has_header == True:
+                    next(reader)
+                    for i, line in enumerate(reader):
+                        parsed_uri = urlparse(line[self.uri_column]).netloc.replace(".", "_").replace(':', "_")
+                        uri_dict_temp[parsed_uri + "_%i" %i] = line[self.uri_column]
+                else:
+                    for i, line in enumerate(reader):
+                        parsed_uri = urlparse(line[self.uri_column]).netloc.replace(".", "_").replace(':', "_")
+                        uri_dict_temp[parsed_uri + "_%i" %i] = line[self.uri_column]
+
             # Exclude header if has_header is True
             elif isinstance(self.filename_column, int):
                 if self.has_header == True:
                     next(reader)
                     for line in reader:
                         uri_dict_temp[line[self.filename_column]] = line[self.uri_column]
+                        print("I HAVE A HEADER")
                 else:
                     for line in reader:
                         uri_dict_temp[line[self.filename_column]] = line[self.uri_column]
+                        
             # Replace dict with temp dict
             self.uri_dict = uri_dict_temp            
 
