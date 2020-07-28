@@ -1,8 +1,15 @@
 # Pywebcapture
 Allows you to loop through a list of uri's and grab a screenshot that can be saved to disk.
 
+Tested with Python version 3.8.3
+
 ## Installation
-How to install it here
+
+1. Install [Python](https://www.python.org/downloads/release/python-383/) version 3.8.3 
+2. Install [Git](https://git-scm.com/)
+3. Create your desired workspace folder ```mkdir my/workspace/directory/here```
+4. Change directory ```cd my/workspace/directory/here```
+5. Run ```git clone https://github.com/wirelessfuture/pywebcapture.git```
 
 ## Basic Usage
 
