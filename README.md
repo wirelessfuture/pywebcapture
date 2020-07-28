@@ -7,9 +7,12 @@ Tested with Python version 3.8.3
 
 1. Install [Python](https://www.python.org/downloads/release/python-383/) version 3.8.3 
 2. Install [Git](https://git-scm.com/)
-3. Create your desired workspace folder ```mkdir my/workspace/directory/here```
-4. Change directory ```cd my/workspace/directory/here```
-5. Run ```git clone https://github.com/wirelessfuture/pywebcapture.git```
+3. Install virtualenv ```pip install virtualenv```
+4. Create your desired workspace folder ```mkdir my/workspace/directory/here```
+5. Change directory ```cd my/workspace/directory/here```
+6. Run ```git clone https://github.com/wirelessfuture/pywebcapture.git```
+7. Create a virtual environment ```virtualenv venv```
+8. Install requirements ```pip install requirements -r requirements.txt```
 
 ## Basic Usage
 
