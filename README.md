@@ -13,7 +13,7 @@ Tested with Python version 3.8.3
 6. Change to newly cloned folder ```cd pywebcapture```
 7. Create a virtual environment ```virtualenv venv```
 8. Activate virtual environment - Windows: ```.\venv\Scripts\activate``` Linux ```source ./venv/bin/activate```
-9. Install requirements ```pip install requirements -r requirements.txt```
+9. Install requirements ```pip install -r requirements.txt```
 
 ## Basic Usage
 
