@@ -6,17 +6,11 @@ from loader import CSVLoader
 
 
 if __name__ == "__main__":
-    fl = CSVLoader("example.csv", True, 3, "web-scraper-order")
+    fl = CSVLoader("example.csv", True, 3, None)
     uri_dict = fl.get_uri_dict()
     pd = pd(None)
-    failed_screenshots = []
     for file_name, uri in uri_dict.items():
-        height = pd.get_page_height(uri)
-        failed = pd.screenshot_page(height, uri, file_name)
-        if failed == None:
-            pass
-        else:
-            failed_screenshots.append(failed)
+        pd.run(uri, file_name)
         time.sleep(2)
-    print(failed_screenshots)
+    pd.shutdown()
     
