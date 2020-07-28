@@ -1,4 +1,4 @@
-# Pyscreen
+# Pywebcapture
 Allows you to loop through a list of uri's and grab a screenshot that can be saved to disk.
 
 ## Installation
