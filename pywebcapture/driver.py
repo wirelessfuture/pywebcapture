@@ -15,6 +15,8 @@ limitations under the License.
 """
 
 import os.path
+import logging
+import time
 
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
@@ -99,18 +101,23 @@ class Driver:
 
     # Shutdown the chromium instance
     def _shutdown(self):
-        print(">>> SHUTTING DOWN BROWSER")
+        logging.info("Shutting down browser")
         self.driver.quit()
 
     # Given a height, url and an article_id, it will open the url at the chosen height and take a screenshot
     def run(self):
         for file_name, uri in self.uri_dict.items():
-            print(">>> TAKING SCREENSHOT OF %s" % uri)
-            self._get_uri(uri)
-            self._reset_default_window_size()
-            height = self._get_height()
-            self._resize_window(height)
-            file_name = self._build_path(file_name)
-            self._screenshot(file_name)
-            print(">>> SUCCESS")
+            try:
+                logging.info()
+                self._get_uri(uri)
+                self._reset_default_window_size()
+                height = self._get_height()
+                self._resize_window(height)
+                file_name = self._build_path(file_name)
+                self._screenshot(file_name)
+                logging.info("Screenshot taken of {}".format(uri))
+            except Exception:
+                logging.error("Error taking screenshot of {}, skipping...")
+                pass
+
         self._shutdown()
