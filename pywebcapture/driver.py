@@ -21,6 +21,10 @@ import time
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 
+# Set the logging level to info
+logging.basicConfig(format="%(asctime)s - %(levelname)s - %(message)s", level=logging.INFO)
+
+# The default screen width and height for the headless browser
 DEFAULT_WIDTH = 1920
 DEFAULT_HEIGHT = 1080
 
@@ -108,7 +112,6 @@ class Driver:
     def run(self):
         for file_name, uri in self.uri_dict.items():
             try:
-                logging.info()
                 self._get_uri(uri)
                 self._reset_default_window_size()
                 height = self._get_height()
@@ -116,8 +119,12 @@ class Driver:
                 file_name = self._build_path(file_name)
                 self._screenshot(file_name)
                 logging.info("Screenshot taken of {}".format(uri))
-            except Exception:
-                logging.error("Error taking screenshot of {}, skipping...")
+            except Exception as e:
+                logging.error("Error taking screenshot of {}, skipping...", exc_info=True)
                 pass
-
+            except KeyboardInterrupt as e:
+                logging.info("Program terminated by user...", exc_info=False)
+                self._shutdown
+                return 0
+        logging.info("Finished with all URIs")
         self._shutdown()
