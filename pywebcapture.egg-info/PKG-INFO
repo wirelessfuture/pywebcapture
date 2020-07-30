@@ -1,0 +1,69 @@
+Metadata-Version: 2.1
+Name: pywebcapture
+Version: 0.0.2
+Summary: A package that allows users to capture full-page screenshots of websites using Selenium and Chrome webdriver.
+Home-page: https://github.com/wirelessfuture/pywebcapture
+Author: Christopher Andrews
+Author-email: wirelessfuture2000@gmail.com
+License: UNKNOWN
+Description: # Pywebcapture
+        A package that allows users to capture full-page screenshots of websites using Selenium and Chrome webdriver.
+        
+        Tested with Python version 3.8.3
+        
+        ## Installation
+        
+        1. Download the latest version of [Chrome webdriver](http://chromedriver.chromium.org/downloads)
+        2. Add chrome webdriver path to your system PATH (its also possible to pass the absolute path of your driver to the Driver instance)
+        2. Run ```pip install pywebcapture```
+        
+        ## Basic Usage
+        
+        **Import the modules:**
+        
+        ```python
+        from pywebcapture import loader, driver
+        ```
+        
+        **Use the CSVLoader to load your csv file containing the urls and optional file names:**
+        
+        Options:
+        * input_filepath - The absolute path to your csv file (str)
+        * has_header - Whether your csv has a header row or now (bool)
+        * uri_column - The column that contains the uri's, can use either column name (str) or the index position (int)
+        * filename_column - The column that contains the desired file names (str), can be set to None, where the driver will use the uri netloc as the filename
+        
+        ```python
+        csv_file = loader.CSVLoader("example.csv", True, 3, None)
+        ```
+        
+        **Call the get_uri_dict() method from the CSVLoader instance, this parses the CSV into a Python dictionary:**
+        
+        ```python
+        uri_dict = csv_file.get_uri_dict()
+        ```
+        
+        **Create instance of the web driver:**
+        
+        Options:
+        * driver_path - This is the absolute path to the chrome webdriver, if None or "chromedriver" it will attempt to search %PATH
+        * output_path - This is the output path that you want to save screen shots at (str)
+        * delay - This is the delay in seconds between each page request, minimum is 2 seconds, please crawl pages respectfully :)
+        * uri_dict - The Python dictionary containing your file names and uri's
+        
+        ```python
+        d = driver.Driver("path/to/chrome/webdriver", None, 3, uri_dict)
+        ```
+        
+        **Run the driver, this will loop through all uri's, get the maximum scrollheight and then take a screenshot**
+        
+        ```python
+        d.run()
+        ```
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: Freeware
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
