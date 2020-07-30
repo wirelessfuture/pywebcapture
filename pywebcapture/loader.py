@@ -18,9 +18,15 @@ import os
 import csv
 from urllib.parse import urlparse
 
-# CSVLoader takes a valid .csv file and builds a filename/uri map for the driver
 class CSVLoader:
     def __init__(self, input_filepath, has_header, uri_column, filename_column):
+        """ Loader class that helps to load CSV files
+        :param input_filepath: Path of CSV file
+        :param has_header: Whether the CSV file has a header or not
+        :param uri_column: The column name or index of the column that contains the URIs
+        :param filename_column: The column name or index of the column that contains the filenames, can be None
+        """
+
         # User must pass a valid csv file as the input_filepath argument as type str
         if input_filepath != "" and input_filepath != None and isinstance(input_filepath, str):
             if os.path.isfile(input_filepath):
@@ -59,9 +65,11 @@ class CSVLoader:
         # Create an empty dict
         self.uri_dict = {}
 
-
-    # Translate the column name from the csv as an index of type (int), if not found, raise Exception
     def _translate_column_to_index(self, column_name):
+        """ Takes a column name (str) and attempts to find the index (int), if not found, raise exception
+        :param column_name: The column header name as a (str) for example: my_url_row
+        :return: int if index was found
+        """
         if self.has_header == True:
             with open(self.input_filepath, 'r', encoding='utf-8') as in_file:
                 reader = csv.reader(in_file)
@@ -73,8 +81,9 @@ class CSVLoader:
         else:
             raise Exception("Cannot convert column name string to index, input_file does not have a header!")
 
-    # Private method, loads and sets the internal uri_dict variable
     def _set_uri_dict(self):
+        """ Setter method for loading and parsing the CSV File
+        """
         with open(self.input_filepath, 'r', encoding='utf-8') as in_file:
             uri_dict_temp = {}
             reader = csv.reader(in_file)
