@@ -5,7 +5,7 @@ Tested with Python version 3.8.3
 
 ## Installation
 
-1. Download the latest version of [Chrome webdriver](http://chromedriver.chromium.org/downloads)
+1. Download the latest version of [Chrome webdriver](http://chromedriver.chromium.org/downloads) (Please check the chrome version you are using and download appropriate version)
 2. Add chrome webdriver path to your system PATH (its also possible to pass the absolute path of your driver to the Driver instance)
 2. Run ```pip install pywebcapture```
 
