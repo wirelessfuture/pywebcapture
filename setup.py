@@ -5,13 +5,14 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="pywebcapture",
-    version="0.0.2",
+    version="0.0.3",
     author="Christopher Andrews",
     author_email="wirelessfuture2000@gmail.com",
     description="A package that allows users to capture full-page screenshots of websites using Selenium and Chrome webdriver.",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/wirelessfuture/pywebcapture",
+    install_requires=['selenium'],
     packages=setuptools.find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",

@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: pywebcapture
-Version: 0.0.2
+Version: 0.0.3
 Summary: A package that allows users to capture full-page screenshots of websites using Selenium and Chrome webdriver.
 Home-page: https://github.com/wirelessfuture/pywebcapture
 Author: Christopher Andrews
