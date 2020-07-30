@@ -107,7 +107,6 @@ class CSVLoader:
                     next(reader)
                     for line in reader:
                         uri_dict_temp[line[self.filename_column]] = line[self.uri_column]
-                        print("I HAVE A HEADER")
                 else:
                     for line in reader:
                         uri_dict_temp[line[self.filename_column]] = line[self.uri_column]
