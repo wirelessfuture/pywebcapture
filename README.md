@@ -44,7 +44,7 @@ Options:
 * uri_dict - The Python dictionary containing your file names and uri's
 
 ```python
-d = driver.Driver("path/to/chrome/webdriver", None, 3, uri_dict)
+d = driver.Driver("path/to/chrome/webdriver", "path/to/output/folder", 3, uri_dict)
 ```
 
 **Run the driver, this will loop through all uri's, get the maximum scrollheight and then take a screenshot**
